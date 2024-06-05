@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'docker'
-    }
+    agent any
     stages {
         stage('Source') {
             steps {
@@ -42,7 +40,7 @@ pipeline {
             junit 'results/e2e/*_result.xml'
             cleanWs()
         }
-         failure {
+        failure {
             script {
                 def jobName = env.JOB_NAME
                 def buildNumber = env.BUILD_NUMBER
